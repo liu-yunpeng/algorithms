@@ -10,3 +10,8 @@ def karatsuba(x,y):
 		b = x % 10**(nby2)
 		c = y // 10**(nby2)
 		d = y % 10**(nby2)
+
+		print(a,b,c,d)
+		ac = karatsuba(a,c)
+		bd = karatsuba(b,d)
+		ad_plus_bc = karatsuba(a+b,c+d) - ac - bd
