@@ -4,7 +4,7 @@ def karatsuba(x,y):
 		return x*y
 	else:
 		n = max(len(str(x)),len(str(y)))
-		nby2 = n / 2
+		nby2 = n // 2
 
 		a = x // 10**(nby2)
 		b = x % 10**(nby2)
