@@ -27,7 +27,10 @@ def GetInversion(lst):
     j = 0    # index to iterate through left and right
     split_inversions = 0
     sorted_array = []
-    while i < len(left_sorted) and j < len(right_sorted):
+    
+    counter = 0
+    
+    while i < len(left_sorted) and j < len(right_sorted) and counter < 30:
         if left_sorted[i] > right_sorted[j]:
             split_inversions += (len(left_sorted) - i)
             sorted_array.append(right_sorted[j])
@@ -36,6 +39,7 @@ def GetInversion(lst):
             sorted_array.append(left_sorted[i])
             i += 1
             
+        counter += 1
 
     if i < len(left_sorted):
         sorted_array.extend(left_sorted[i:])
