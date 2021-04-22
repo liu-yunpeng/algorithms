@@ -5,3 +5,8 @@ def karatsuba(x,y):
 	else:
 		n = max(len(str(x)),len(str(y)))
 		nby2 = n / 2
+
+		a = x // 10**(nby2)
+		b = x % 10**(nby2)
+		c = y // 10**(nby2)
+		d = y % 10**(nby2)
