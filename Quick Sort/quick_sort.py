@@ -1,29 +1,30 @@
-def ChoosePivot(array,flag):
-	length = len(array)
-	if length % 2 == 0:
-		middle = length // 2
-	else:
-		middle = length // 2 + 1
+input_file = r"~\input.txt"
 
-	# ways to choose pivot: at start, at middle, at end, or median of the 3
+with open(input_file, 'r') as f:
+    input_data = [int(x) for x in f]
 
-	median_of_three = [array[0], array[middle], array[-1]].sort()[1]
 
-	if flag == 1:
-		return 0
-	if flag == 2:
-		return -1
-	if flag == 3:
-		if array[0] ==  median_of_three:
-			return 0
-		if array[middle] == median_of_three:
-			return middle
-		if array[-1] == median_of_three:
-			return -1
+def ChoosePivot(array):
+    n = len(array)
+    if int(n/2)*2==n:
+        middle = n//2 - 1
+    elif int(n/2)*2<n:
+        middle = n//2
+        
+    
+    temp_array = [array[0], array[middle], array[-1]]
+    temp_array.sort()
+    median_of_three = temp_array[1]
+    if array[0] ==  median_of_three:
+        return 0
+    if array[middle] == median_of_three:
+        return middle
+    if array[-1] == median_of_three:
+        return -1
 
 def Swap(array, pos1, pos2):
-	array[pos1], array[pos2] = array[pos2], array[pos1] 
-	return array
+    array[pos1], array[pos2] = array[pos2], array[pos1] 
+    return array
 
 def Partition(array):
     pivot = array[0]
@@ -36,14 +37,26 @@ def Partition(array):
             pos_pointer += 1
     array = Swap(array,0 , pos_pointer - 1)
     return array, pos_pointer - 1
+    
+def QuickSort(array):
+    n = len(array)
+    
+    if n>1:
+        p = ChoosePivot(array)
+        array = Swap(array,0,p)
+        array,pivot_position = Partition(array)
+        array[:pivot_position] = QuickSort(array[:pivot_position])
+        array[pivot_position+1:] = QuickSort(array[pivot_position+1:])
+        
+        return array
+    else:
+        return array
 
 
-def QuickSort(array, flag):
-	length = len(array)
 
-	if length ==1:
-		return array, 0
-	else:
-		pivot = ChoosePivot(array,flag)
-		# swap pivot to the start of the array
-		array = Swap(array, 0, pivot)
+
+
+#print(input_data)
+
+
+print(QuickSort(input_data))
