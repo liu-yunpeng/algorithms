@@ -10,3 +10,11 @@ To make sure that the quick sort does not get into that pitfall, need to either:
 
 Because of the "in place" property, quick sort has better space complexity than merge sort. 
 However, if processing a linked-list, merge sort can perform better than quick sort. https://stackoverflow.com/questions/29218440/when-merge-sort-is-preferred-over-quick-sort
+
+
+
+
+
+
+
+![image](https://user-images.githubusercontent.com/12473437/115944719-fd72ef00-a47c-11eb-9f79-53a7a5c0abb7.png)
