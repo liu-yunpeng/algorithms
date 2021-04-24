@@ -10,3 +10,10 @@ void quickSort(int arr[], int low, int high)
         quickSort(arr, pivot + 1, high);
     }
 }
+
+
+
+void printArray(int arr[], int size)
+{
+    
+}
