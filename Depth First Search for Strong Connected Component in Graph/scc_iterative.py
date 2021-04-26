@@ -1,7 +1,6 @@
 from collections import defaultdict
 import gc
-from itertools import groupby
-import sys
+
 
 
 input_file = r"C:\Users\Yunpeng Liu\Documents\Stanford Online\Course 1 Divide and Conquer, Sorting and Searching, and Randomized Algorithms\assignment4.txt"
@@ -10,19 +9,14 @@ input_file = r"C:\Users\Yunpeng Liu\Documents\Stanford Online\Course 2 Graph Sea
 
 print('started')
 
-progress = 0
-
 with open(input_file, 'r') as f:
     input_data = []
     for line in f:
         line = line.split()
         input_data.append([int(i) for i in line])
-        progress += 1
-        if progress % 10000 == 0:
-            print('making progress {}'.format(progress))
 
         
-
+print('loading rev_graph')   
     
 rev_input_data = []
 for edge in input_data:
@@ -35,43 +29,8 @@ for edge in rev_input_data:
 del rev_input_data
 gc.collect()
 
-#print(graph)
-#print(rev_graph)
 
-#print(graph)
-#print(rev_graph)
-print('loaded rev_graph')   
-
-def DFS_First(graph, node):
-    global finishing_time
-    global f_time_dict
-    global seen_first
-    
-    seen_first[node] = 1
-    #print(node)
-        
-    if node in graph.keys():
-        for neighbor in graph[node]:
-            if neighbor not in seen_first:
-                DFS_First(graph, neighbor)
-            
-    finishing_time += 1
-    f_time_dict[finishing_time] = node
-    
-def DFS_Second(graph, node):
-    global leader_dict
-    global seen_second
-    
-    seen_second[node] = 1
-    leader_dict[leader].append(node)
-    
-    if node in graph.keys():
-        for neighbor in graph[node]:
-            if neighbor not in seen_second:
-                DFS_Second(graph, neighbor)
-            
-
-
+# 1st DFS_First loop, find finishing time in a revesed graph
 
 seen_first = set()
 finished_first = set()
@@ -79,12 +38,10 @@ finishing_time = 0
 
 f_time_dict = {}    # {finishing_time: node}
 
-
-progress = 0
-# 1st DFS_First loop, find finishing time in a revesed graph
-
 for original_node in rev_graph.keys():
     if original_node not in seen_first:
+        
+        # iteratively traverse graph using depth first search
         first_call_stack = [original_node]
         while first_call_stack:
             node = first_call_stack.pop()
@@ -96,32 +53,26 @@ for original_node in rev_graph.keys():
                     for n in neighbors:
                         if n not in seen_first:
                             first_call_stack.append(n)
+            
+            # there will be multiple paths to a node, so we need to track 
+            # if we have seen this node in the finished set
             else:
                  if node not in finished_first:
                      finished_first.add(node)
                      finishing_time += 1
                      f_time_dict[finishing_time] = node
-        
+
     
-    if progress % 10000 == 0:
-        print('first loop progress {}'.format(progress))
-        
-    progress += 1
-    
-print(f_time_dict)
+# memory management
 del rev_graph
 del seen_first
 gc.collect()
 
-print('loaded graph' )
-progress = 0
+print('loading graph' )
 graph = defaultdict(list)
 for edge in input_data:
     graph[edge[0]].append(edge[1])
-    if progress % 10000 == 0:
-        print('adj', progress)
-        
-    progress += 1
+
 
 
 # 2nd DFS_First loop, find leader in graph
@@ -160,20 +111,14 @@ for i in range(length):
             
 
 
-'''
-for edge in graph:
-    from_node, to_node = edge
-    if from_node not in seen_second:
-        seen_second[from_node] = 1
-        leader = from_node
-        print(leader)
-        DFS_Second(graph, from_node)
-'''
 
-print(leader_dict)
+#print(leader_dict)
 scc = []
 for i in leader_dict.keys():
     scc.append(len(leader_dict[i]))
 
-scc.sort()
-print(scc)
+scc.sort(reverse=True)
+if len(scc) > 5:
+    print(scc[:5])
+else:
+    print(scc)
