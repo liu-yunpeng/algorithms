@@ -1,9 +1,6 @@
 from collections import defaultdict
 import gc
 from itertools import groupby
-import sys
-
-sys.setrecursionlimit(1000000)
 
 input_file = r"C:\Users\Yunpeng Liu\Documents\Stanford Online\Course 1 Divide and Conquer, Sorting and Searching, and Randomized Algorithms\assignment4.txt"
 input_file = r"C:\Users\Yunpeng Liu\Documents\Stanford Online\Course 2 Graph Search, Shortest Paths, and Data Structures\assign 1 SCC\assignment1.txt"
