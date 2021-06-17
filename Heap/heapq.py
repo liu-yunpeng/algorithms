@@ -22,5 +22,8 @@ heapq.heappop(lst)
 
 print(lst)
 
-# pop an item from the heap, then push the new item
-heapq.heapreplace(heap, item)
+# pop first, then push
+heapq.heapreplace(lst, 15)
+
+# pop push, then pop
+heapq.heappushpop(lst, 5)
