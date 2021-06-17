@@ -1,4 +1,4 @@
-#SCC
+# SCC
 
 Strong Connected Components (scc) are groups within which each node can be reached from any other node in the group. Find all the SCCs for a certain graph. 
 
