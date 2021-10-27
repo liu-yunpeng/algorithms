@@ -18,6 +18,17 @@ using namespace std;
 
 typedef long long ll;
 
+int highestPowerof2(int n) {
+	/* n should be a positive integar */
+	int i = 1;
+	while ((i << 1) <= n) {
+		i = i << 1;
+	}
+
+	return i;
+}
+
+
 int main(int argc, char const *argv[])
 {
 	int base = 2;
@@ -38,6 +49,14 @@ int main(int argc, char const *argv[])
 	cout << (~ b) << endl;
 
 
+	cout << "highestPowerof2(10) " << highestPowerof2(10) << endl;
+	cout << "highestPowerof2(16) " << highestPowerof2(16) << endl;
+	cout << "highestPowerof2(25) " << highestPowerof2(25) << endl;
+	cout << "highestPowerof2(125) " << highestPowerof2(125) << endl;
+
+
 
 	return 0;
 }
+
+
