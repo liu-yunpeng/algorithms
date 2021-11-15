@@ -5,17 +5,14 @@ using namespace std;
 
 int main()
 {
-    vector<int> g1;
+	vector<int> g1;
 
-    for (int i = 1; i <= 5; i++)
-        g1.push_back(i);
+	for (int i = 1; i <= 5; i++)
+		g1.push_back(i);
 
-    cout << "vector: ";
-    for (auto i = g1.begin(); i != g1.end(); ++i)
-        cout << *i << " ";
-
-
-
+	cout << "vector: ";
+	for (auto i = g1.begin(); i != g1.end(); ++i)
+		cout << *i << " ";
 
 	// the iterator constructor can also be used to construct from arrays:
 	int myints[] = {1, 2, 3, 4, 5};
@@ -23,7 +20,7 @@ int main()
 
 	// iterate a vector
 	cout << "\nvector in reverse order:";
-	for (vector<int>::reverse_iterator it = myvector.rbegin(); it != myvector.rend(); ++it){
+	for (auto it = myvector.rbegin(); it != myvector.rend(); ++it) {
 		cout << *it << ' ';
 	}
 
