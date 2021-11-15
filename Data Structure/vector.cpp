@@ -30,5 +30,8 @@ int main()
 		cout << n << ' ';
 	}
 
+	cout << endl << "get value by index [0]: ";
+	cout <<  myvector.at(0) << endl;
+
 	return 0;
 }
